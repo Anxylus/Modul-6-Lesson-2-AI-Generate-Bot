@@ -2,7 +2,7 @@
 
 import discord
 from config import token
-from ai import ReveAPI
+from main import ReveAPI
 from datetime import datetime
 
 intents = discord.Intents.default()
@@ -23,7 +23,7 @@ async def on_message(message):
 
     if message.content.startswith('$generate_image'):
         filename = str(datetime.now())
-        api.generate_reve_image(message.content, file_name=filename)
+        api.generate_reve_image(message.content, save_image=filename)
         await message.channel.send(file=discord.File(filename))
 
 client.run(token)
